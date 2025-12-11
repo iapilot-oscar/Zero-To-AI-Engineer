@@ -48,8 +48,19 @@ for y in range(1, alto - 1):
 
 # 4. RESULTADO
 # Normalizamos para que se vea bien (dividimos por el máximo para tener 0 a 1, o clip a 255)
-imagen_final = imagen_final / np.max(imagen_final) * 255
+# imagen_final = imagen_final / np.max(imagen_final) * 255
 
+# --- 5. GUARDAR LA EVIDENCIA ---
+# Convertimos la matriz de números a formato de imagen (enteros 0-255)
+imagen_para_guardar = imagen_final.astype(np.uint8)
+
+# Creamos el objeto imagen y guardamos
+resultado = Image.fromarray(imagen_para_guardar)
+resultado.save("resultado_sobel.jpg")
+
+print("✅ Misión cumplida: Imagen guardada como 'resultado_sobel.jpg'")
+
+# --- 6. MOSTRAR EN PANTALLA ---
 plt.figure(figsize=(10, 10))
 plt.imshow(imagen_final, cmap='gray')
 plt.title("Detector de Bordes Completo (Sobel)")
